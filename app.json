@@ -1,0 +1,15 @@
+{
+  "expo": {
+    "name": "Caminhando com Deus Pai",
+    "slug": "caminhando-com-deus-pai",
+    "scheme": "caminhando",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#1a1410",
+    "ios": { "supportsTablet": false, "bundleIdentifier": "com.arktech.caminhando" },
+    "android": { "package": "com.arktech.caminhando", "permissions": ["POST_NOTIFICATIONS"] },
+    "plugins": ["expo-router", ["expo-notifications", { "color": "#f2a541" }]],
+    "experiments": { "typedRoutes": false }
+  }
+}
