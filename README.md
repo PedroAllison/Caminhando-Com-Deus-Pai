@@ -5,7 +5,7 @@ registre o que Deus falou com você e mantenha sua **lamparina acesa** todos os 
 
 ## Funcionalidades
 - Cadastro inicial: nome, idade, sexo, versão da Bíblia e horários de lembrete
-- Leitura por livro, capítulo e versículo(s) (NVI, ARA, ACF, APEE via [ABíbliaDigital](https://www.abibliadigital.com.br))
+- Leitura por livro, capítulo e versículo(s) na NVI completa, embutida no app (funciona offline)
 - Reflexão personalizada (idade, sexo, histórico e um tema variado), gerada pelo **Google Gemini (gratuito)**
 - Campo de registro pessoal + resposta da IA ao que a pessoa escreveu
 - Lamparina animada (acende ao concluir, fumaça quando apagada), sequência de dias e recorde
@@ -38,9 +38,8 @@ npx expo start           # abra no celular com o app Expo Go
 
 Sem o Supabase configurado, o app funciona offline com reflexões de reserva (sem comunidade).
 
-## Sobre as versões bíblicas
-NVI, NAA, ARC e NVT são protegidas por direitos autorais (Biblica / Sociedade Bíblica do Brasil / Mundo Cristão).
-O app usa as versões disponibilizadas pela API ABíbliaDigital. Para incluir NAA/ARC/NVT em produção, é necessário obter licença das editoras.
+## Sobre a versão bíblica
+O texto da NVI fica em `assets/biblia/nvi` (um JSON por livro), extraído dos PDFs. A NVI é protegida por direitos autorais (Biblica); para publicar o app nas lojas, obtenha a licença de uso.
 
 ## Estrutura
 ```

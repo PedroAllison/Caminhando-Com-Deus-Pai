@@ -4,7 +4,7 @@ const raw: [string, string, number][] = [
 ['gn','Gênesis',50],['ex','Êxodo',40],['lv','Levítico',27],['nm','Números',36],['dt','Deuteronômio',34],
 ['js','Josué',24],['jz','Juízes',21],['rt','Rute',4],['1sm','1 Samuel',31],['2sm','2 Samuel',24],
 ['1rs','1 Reis',22],['2rs','2 Reis',25],['1cr','1 Crônicas',29],['2cr','2 Crônicas',36],['ed','Esdras',10],
-['ne','Neemias',13],['et','Ester',10],['jó','Jó',42],['sl','Salmos',150],['pv','Provérbios',31],
+['ne','Neemias',13],['et','Ester',10],['jo_','Jó',42],['sl','Salmos',150],['pv','Provérbios',31],
 ['ec','Eclesiastes',12],['ct','Cânticos',8],['is','Isaías',66],['jr','Jeremias',52],['lm','Lamentações',5],
 ['ez','Ezequiel',48],['dn','Daniel',12],['os','Oséias',14],['jl','Joel',3],['am','Amós',9],
 ['ob','Obadias',1],['jn','Jonas',4],['mq','Miquéias',7],['na','Naum',3],['hc','Habacuque',3],
