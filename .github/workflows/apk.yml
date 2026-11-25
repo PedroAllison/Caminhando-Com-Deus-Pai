@@ -1,0 +1,50 @@
+name: Gerar APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    env:
+      EXPO_PUBLIC_SUPABASE_URL: https://ttimduupbjoqceycshus.supabase.co
+      EXPO_PUBLIC_SUPABASE_ANON_KEY: sb_publishable_boccd--8uSgmw-Bf7zBP_A_t_eulRx7
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Gerar projeto Android
+        run: npx expo prebuild --platform android --no-install
+
+      - name: Compilar APK
+        working-directory: android
+        run: ./gradlew assembleRelease --no-daemon
+
+      - name: Renomear APK
+        run: cp android/app/build/outputs/apk/release/app-release.apk caminhando-com-deus-pai.apk
+
+      - name: Publicar release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.${{ github.run_number }}
+          name: Caminhando com Deus Pai v1.0.${{ github.run_number }}
+          body: "Baixe o arquivo caminhando-com-deus-pai.apk abaixo e instale no Android."
+          files: caminhando-com-deus-pai.apk
+          make_latest: true
