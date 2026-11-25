@@ -15,19 +15,28 @@ const MSGS = [
 ];
 
 export async function scheduleReminders(times: string[], name: string) {
+  try {
+    return await schedule(times, name);
+  } catch (e) {
+    console.log('Lembretes indisponíveis neste ambiente (Expo Go).', e);
+    return false;
+  }
+}
+
+async function schedule(times: string[], name: string) {
   const { status } = await Notifications.requestPermissionsAsync();
   if (status !== 'granted') return false;
   if (Platform.OS === 'android') {
     await Notifications.setNotificationChannelAsync('devocional', {
       name: 'Lembretes do devocional', importance: Notifications.AndroidImportance.HIGH,
-    });
+    }).catch(() => {});
   }
   await Notifications.cancelAllScheduledNotificationsAsync();
   for (const [i, t] of times.entries()) {
     const [hour, minute] = t.split(':').map(Number);
     await Notifications.scheduleNotificationAsync({
       content: { title: `${name}, hora do devocional`, body: MSGS[i % MSGS.length] },
-      trigger: { type: Notifications.SchedulableTriggerInputTypes.DAILY, hour, minute, channelId: 'devocional' },
+      trigger: { type: Notifications.SchedulableTriggerInputTypes.DAILY, hour, minute, ...(Platform.OS === 'android' ? { channelId: 'devocional' } : {}) },
     });
   }
   return true;
