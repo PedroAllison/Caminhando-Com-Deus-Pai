@@ -16,9 +16,9 @@ function life(age: number, gender: string) {
 }
 
 async function gemini(prompt: string) {
-  const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${KEY}`, {
-    method: 'POST', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.9, maxOutputTokens: 900 } }),
+  const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': KEY },
+    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.9, maxOutputTokens: 1500, thinkingConfig: { thinkingBudget: 0 } } }),
   });
   const j = await r.json();
   return j.candidates?.[0]?.content?.parts?.map((p: any) => p.text).join('') ?? '';
