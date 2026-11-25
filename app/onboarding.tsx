@@ -1,6 +1,7 @@
+import { notify } from '../src/lib/alert';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Alert, ScrollView, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Lamparina from '../src/components/Lamparina';
 import { Body, Button, Chip, Input, Label, Title } from '../src/components/ui';
@@ -31,8 +32,8 @@ export default function Onboarding() {
   }
 
   function next() {
-    if (!name.trim() || !age || !gender) return Alert.alert('Quase lá', 'Preencha nome, idade e sexo.');
-    if (Number(age) < 5 || Number(age) > 120) return Alert.alert('Idade inválida');
+    if (!name.trim() || !age || !gender) return notify('Quase lá', 'Preencha nome, idade e sexo.');
+    if (Number(age) < 5 || Number(age) > 120) return notify('Idade inválida');
     setStep(1);
   }
 

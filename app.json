@@ -7,9 +7,35 @@
     "orientation": "portrait",
     "userInterfaceStyle": "dark",
     "backgroundColor": "#1a1410",
-    "ios": { "supportsTablet": false, "bundleIdentifier": "com.arktech.caminhando" },
-    "android": { "package": "com.arktech.caminhando", "permissions": ["POST_NOTIFICATIONS"] },
-    "plugins": ["expo-router", ["expo-notifications", { "color": "#f2a541" }]],
-    "experiments": { "typedRoutes": false }
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.arktech.caminhando"
+    },
+    "android": {
+      "package": "com.arktech.caminhando",
+      "permissions": [
+        "POST_NOTIFICATIONS"
+      ]
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-notifications",
+        {
+          "color": "#f2a541"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": false
+    },
+    "web": {
+      "output": "single",
+      "bundler": "metro",
+      "name": "Caminhando com Deus Pai",
+      "shortName": "Caminhando",
+      "themeColor": "#1a1410",
+      "backgroundColor": "#1a1410"
+    }
   }
 }

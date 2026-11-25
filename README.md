@@ -4,6 +4,7 @@ App mobile (React Native + Expo) para devocionais diários: escolha um versícul
 registre o que Deus falou com você e mantenha sua **lamparina acesa** todos os dias, junto com seus amigos.
 
 ## Funcionalidades
+- O app recomenda a passagem do dia conforme o sentimento da pessoa (ansioso, triste, grato...), sem repetir textos recentes
 - Cadastro inicial: nome, idade, sexo, versão da Bíblia e horários de lembrete
 - Leitura por livro, capítulo e versículo(s) na NVI completa, embutida no app (funciona offline)
 - Reflexão personalizada (idade, sexo, histórico e um tema variado), gerada pelo **Google Gemini (gratuito)**
@@ -51,3 +52,6 @@ src/components/      Lamparina animada e componentes de UI
 src/lib/             bíblia, IA, armazenamento, notificações, comunidade
 supabase/            SQL e Edge Function (Gemini)
 ```
+
+## Versão web (iPhone)
+Publicada na Vercel a cada push (`vercel.json`). No iPhone: abra o link no Safari > Compartilhar > Adicionar à Tela de Início.

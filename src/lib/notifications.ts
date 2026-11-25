@@ -1,7 +1,7 @@
 import * as Notifications from 'expo-notifications';
 import { Platform } from 'react-native';
 
-Notifications.setNotificationHandler({
+if (Platform.OS !== 'web') Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowBanner: true, shouldShowList: true, shouldPlaySound: true, shouldSetBadge: false,
   }),
@@ -24,6 +24,7 @@ export async function scheduleReminders(times: string[], name: string) {
 }
 
 async function schedule(times: string[], name: string) {
+  if (Platform.OS === 'web') return false;
   const { status } = await Notifications.requestPermissionsAsync();
   if (status !== 'granted') return false;
   if (Platform.OS === 'android') {

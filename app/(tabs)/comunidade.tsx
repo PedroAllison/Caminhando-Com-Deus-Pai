@@ -1,6 +1,7 @@
+import { notify } from '../../src/lib/alert';
 import { useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
-import { Alert, Pressable, RefreshControl, ScrollView, Share, Text, View } from 'react-native';
+import { Pressable, RefreshControl, ScrollView, Share, Text, View } from 'react-native';
 import Lamparina from '../../src/components/Lamparina';
 import { Body, Button, Card, Input, Label, Title } from '../../src/components/ui';
 import { addFriend, amen, feed, Friend, listFriends, SharedPost, syncProfile } from '../../src/lib/community';
@@ -36,8 +37,8 @@ export default function Comunidade() {
   );
 
   async function onAdd() {
-    try { await addFriend(friendCode); setFriendCode(''); load(); Alert.alert('Pronto!', 'Amigo adicionado.'); }
-    catch (e: any) { Alert.alert('Ops', e.message); }
+    try { await addFriend(friendCode); setFriendCode(''); load(); notify('Pronto!', 'Amigo adicionado.'); }
+    catch (e: any) { notify('Ops', e.message); }
   }
 
   return (
