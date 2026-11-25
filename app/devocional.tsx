@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, KeyboardAvoidingView, Platform, Pressable, ScrollView, Switch, Text, View } from 'react-native';
 import { notify } from '../src/lib/alert';
 import Lamparina from '../src/components/Lamparina';
@@ -28,6 +28,8 @@ export default function Devocional() {
   const [note, setNote] = useState('');
   const [response, setResponse] = useState('');
   const [share, setShare] = useState(false);
+  const scroll = useRef<any>(null);
+  const toEnd = () => setTimeout(() => scroll.current?.scrollToEnd({ animated: true }), 250);
 
   useEffect(() => { getProfile().then(setProfile); getEntries().then(setRecent); }, []);
 
@@ -70,8 +72,8 @@ export default function Devocional() {
   if (!profile) return <View style={{ flex: 1, backgroundColor: C.bg }} />;
 
   return (
-    <KeyboardAvoidingView style={{ flex: 1, backgroundColor: C.bg }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-      <ScrollView contentContainerStyle={{ padding: 20, paddingBottom: 60 }} keyboardShouldPersistTaps="handled">
+    <KeyboardAvoidingView style={{ flex: 1, backgroundColor: C.bg }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'} keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}>
+      <ScrollView ref={scroll} contentContainerStyle={{ padding: 20, paddingBottom: 120 }} keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets>
         {loading && <ActivityIndicator color={C.gold} style={{ marginVertical: 12 }} />}
 
         {step === 'mood' && <>
@@ -122,7 +124,7 @@ export default function Devocional() {
           <Label>Reflexão para você</Label>
           <Body>{reflection}</Body>
           <Label>Seu registro</Label>
-          <Input multiline value={note} onChangeText={setNote} placeholder="O que Deus falou com você? O que achou interessante?" />
+          <Input multiline value={note} onFocus={toEnd} onChangeText={(t) => { setNote(t); toEnd(); }} style={{ maxHeight: 220 }} placeholder="O que Deus falou com você? O que achou interessante?" />
           {hasSupabase && (
             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 12, justifyContent: 'space-between' }}>
               <Body muted>Compartilhar com meus amigos</Body>

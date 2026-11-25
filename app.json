@@ -15,7 +15,8 @@
       "package": "com.arktech.caminhando",
       "permissions": [
         "POST_NOTIFICATIONS"
-      ]
+      ],
+      "softwareKeyboardLayoutMode": "resize"
     },
     "plugins": [
       "expo-router",
